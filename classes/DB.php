@@ -26,6 +26,7 @@ class DB
         return self::$_instance;
     }
 
+    // Function that executes the query
     public function query($sql, $params = array())
     {
         $this->_error = false;
@@ -48,6 +49,7 @@ class DB
         return $this;
     }
 
+    // Function used by get and delete
     private function action($action, $table, $where = array())
     {
         if (count($where) === 3) {
@@ -68,6 +70,7 @@ class DB
         return false;
     }
 
+    // Function to create data into the database
     public function insert($table, $fields = array())
     {
         $keys = array_keys($fields);
@@ -90,6 +93,7 @@ class DB
         return false;
     }
 
+    // Function to update database
     public function update($table, $id, $fields)
     {
         $set = '';
@@ -112,31 +116,37 @@ class DB
         return false;
     }
 
+    // Function to get all data from specified table
     public function get($table, $where)
     {
         return $this->action('SELECT *', $table, $where);
     }
 
+    // Function to delete data from database
     public function delete($table, $where)
     {
         return $this->action('DELETE', $table, $where);
     }
 
+    // Function to display results
     public function results()
     {
         return $this->_results;
     }
 
+    // Function shows to first result from a query
     public function first()
     {
         return $this->results()[0];
     }
 
+    // Function to count rows returned
     public function count()
     {
         return $this->_count;
     }
 
+    // Function to return error
     public function error()
     {
         return $this->_error;
