@@ -114,7 +114,6 @@ class DB
             return true;
         }
         return false;
-
     }
 
     // Function to get all data from specified table
