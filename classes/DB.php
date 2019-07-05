@@ -68,6 +68,36 @@ class DB
         return false;
     }
 
+    public function insert($table, $fields = array())
+    {
+        $keys = array_keys($fields);
+        $values = '';
+        $x = 1;
+
+        foreach ($fields as $field) {
+            $values .= '?';
+            if ($x < count($fields)) {
+                $values .= ', ';
+            }
+            $x++;
+        }
+
+        $sql = "INSERT INTO users (`" . implode('`, `', $keys) . "`) VALUES ({$values})";
+
+        if (!$this->query($sql, $fields)->error()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function update($table, $id, $fields)
+    {
+        $set = '';
+        $x = 1;
+
+        $sql = "UPDATE {$table} SET {$set} WHERE id = 2";
+    }
+
     public function get($table, $where)
     {
         return $this->action('SELECT *', $table, $where);
