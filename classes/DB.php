@@ -95,7 +95,21 @@ class DB
         $set = '';
         $x = 1;
 
-        $sql = "UPDATE {$table} SET {$set} WHERE id = 2";
+        foreach ($fields as $name => $value) {
+            $set .= "{$name} = ?";
+
+            if ($x < count($fields)) {
+                $set .= ', ';
+            }
+            $x++;
+        }
+
+        $sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
+
+        if (!$this->query($sql, $fields)->error()) {
+            return true;
+        }
+        return false;
     }
 
     public function get($table, $where)
