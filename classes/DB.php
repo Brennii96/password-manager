@@ -110,7 +110,6 @@ class DB
             return true;
         }
         return false;
-
     }
 
     public function get($table, $where)
