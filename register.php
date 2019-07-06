@@ -1,44 +1,48 @@
 <?php
 require_once 'core/init.php';
-if (Input::exists()) {
-    $validate = new Validate();
-    $validation = $validate->check($_POST, array(
-        'username' => array(
-            'name' => 'Username',
-            'required' => true,
-            'min' => 2,
-            'max' => 45,
-            'unique' => 'users',
-        ),
-        'password' => array(
-            'name' => 'Password',
-            'required' => true,
-            'min' => 6,
-        ),
-        'password_again' => array(
-            'name' => 'Password Again',
-            'required' => true,
-            'matches' => 'password',
-        ),
-        'first_name' => array(
-            'name' => 'First Name',
-            'required' => true,
-            'min' => 2,
-            'max' => 45
-        ),
-        'last_name' => array(
-            'name' => 'Last Name',
-            'required' => true,
-            'min' => 2,
-            'max' => 45
-        ),
-    ));
 
-    if ($validation->passed()) {
-        echo 'Passed';
-    } else {
-        foreach ($validation->errors() as $error) {
-            echo $error . ", <br>";
+if (Input::exists()) {
+//        TODO Fix CSRF validation
+    if (Token::check(Input::get('token'))) {
+        $validate = new Validate();
+        $validation = $validate->check($_POST, array(
+            'username' => array(
+                'name' => 'Username',
+                'required' => true,
+                'min' => 2,
+                'max' => 45,
+                'unique' => 'users',
+            ),
+            'password' => array(
+                'name' => 'Password',
+                'required' => true,
+                'min' => 6,
+            ),
+            'password_again' => array(
+                'name' => 'Password Again',
+                'required' => true,
+                'matches' => 'password',
+            ),
+            'first_name' => array(
+                'name' => 'First Name',
+                'required' => true,
+                'min' => 2,
+                'max' => 45
+            ),
+            'last_name' => array(
+                'name' => 'Last Name',
+                'required' => true,
+                'min' => 2,
+                'max' => 45
+            ),
+        ));
+
+        if ($validation->passed()) {
+            echo 'Passed';
+        } else {
+            foreach ($validation->errors() as $error) {
+                echo $error . ", <br>";
+            }
         }
     }
 }
@@ -71,5 +75,6 @@ if (Input::exists()) {
                autocomplete="off">
     </div>
 
+    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
     <input type="submit" name="Register">
 </form>
