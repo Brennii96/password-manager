@@ -24,6 +24,7 @@ $user = new User();
 if ($user->isLoggedIn()) { ?>
     <p>Hello <?php echo escape($user->data()->username); ?></p>
     <ul>
+        <li><a href="update.php">Update your details</a></li>
         <li><a href="logout.php">Logout</a></li>
     </ul>
 <?php } else { ?>

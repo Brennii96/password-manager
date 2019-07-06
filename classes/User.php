@@ -37,6 +37,18 @@ class User
         }
     }
 
+    // Function to update user data
+    public function update($fields = array(), $id = null)
+    {
+        if (!$id && $this->isLoggedIn()) {
+            $id = $this->data()->id;
+        }
+
+        if (!$this->_db->update('users', $id, $fields)) {
+            throw new Exception('There was a problem updating');
+        }
+    }
+
     // Function to find user
     public function find($user = null)
     {
