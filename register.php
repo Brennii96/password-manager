@@ -38,8 +38,26 @@ if (Input::exists()) {
         ));
 
         if ($validation->passed()) {
-            Session::flash('success', 'You registered successfully!');
-            header('Location: index.php');
+            $user = new User();
+            $salt = Hash::salt(32);
+
+            try {
+                $user->create(array(
+                    'username' => Input::get('username'),
+                    'password' => Hash::make(Input::get('password'), $salt),
+                    'first_name' => Input::get('first_name'),
+                    'last_name' => Input::get('last_name'),
+                    'salt' => $salt,
+                    'created_at' => date('Y-m-d H:i:s'),
+                ));
+
+                Session::flash('home', 'You have been registered and can now login.');
+
+                header('Location: index.php');
+
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
         } else {
             foreach ($validation->errors() as $error) {
                 echo $error . ", <br>";
