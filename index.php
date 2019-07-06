@@ -1,9 +1,9 @@
 <?php
 require_once 'core/init.php';
 
-$user = DB::getInstance()->update('users', 2, array(
-    'password' => 'password1',
-));
+if (Session::exists('success')) {
+    echo Session::flash('success');
+}
 
 ?>
 <!doctype html>
