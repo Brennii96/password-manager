@@ -5,7 +5,7 @@ if (Session::exists('home')) {
     echo '<p>' . Session::flash('home') . '</p>';
 }
 
-echo Session::get(Config::get('session/session_name'));
+$user = new User();
 
 ?>
 <!doctype html>
@@ -27,6 +27,15 @@ echo Session::get(Config::get('session/session_name'));
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-
+<h1>Password manager</h1>
+<?php
+if ($user->isLoggedIn()) { ?>
+    <p>Hello <?php echo escape($user->data()->username); ?></p>
+    <ul>
+        <li><a href="logout.php">Logout</a></li>
+    </ul>
+<?php } else { ?>
+    <p>You need to <a href="login.php">Login</a> or <a href="register.php">Register</a>.</p>
+<?php } ?>
 </body>
 </html>
