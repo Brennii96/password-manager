@@ -27,3 +27,16 @@ Create the permissions table: <br>
 `   'name' VARCHAR(45) NULL,`<br>
 `   'permissions' JSON NULL,` <br>
 `   'PRIMARY KEY ('id'));`
+
+Create the password management table:<br>
+`CREATE TABLE 'password_manager'.'password_management' (`<br>
+`  'id' INT NOT NULL AUTO_INCREMENT,`<br>
+`  'user_id' INT(11) NOT NULL,`<br>
+`  'title' VARCHAR(45) NOT NULL,`<br>
+`  'username' VARCHAR(100) NOT NULL,`<br>
+`  'icon' VARCHAR(100) NOT NULL,`<br>
+`  'password' VARCHAR(64) NOT NULL,`<br>
+`  'salt' VARCHAR(45) NOT NULL,`<br>
+`  'url' VARCHAR(100) NOT NULL,`<br>
+`  'created_at' VARCHAR(45) NOT NULL,`<br>
+`  PRIMARY KEY ('id'));`
