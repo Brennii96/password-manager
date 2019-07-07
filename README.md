@@ -10,6 +10,7 @@ Create Users table: <br>
 `   'last_name' VARCHAR(20) NULL,`<br>
 `   'password' VARCHAR(64) NULL,`<br>
 `   'salt' VARCHAR(45) NULL,`<br>
+`   'group' INT(11) NULL,` <br>
 `   'created_at' DATETIME NULL,`<br>
 `  PRIMARY KEY ('id'));`<br>
    
@@ -19,3 +20,10 @@ Create the Users Sessions table: <br>
 `   'user_id' INT(11) NULL,`<br>
 `   'hash' VARCHAR(64) NULL,`<br>
 `   PRIMARY KEY ('id'));`
+
+Create the permissions table: <br>
+`CREATE TABLE 'password_manager'.'user_permissions' (`<br>
+`   'id' INT NOT NULL AUTO_INCREMENT,`<br>
+`   'name' VARCHAR(45) NULL,`<br>
+`   'permissions' JSON NULL,` <br>
+`   'PRIMARY KEY ('id'));`

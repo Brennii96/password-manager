@@ -100,6 +100,12 @@ class User
         return false;
     }
 
+    public function hasPermission($key)
+    {
+        $group = $this->_db->get('users_permissions', array('id', '=', $this->data()->group));
+        print_r($group);
+    }
+
     public function exists()
     {
         return (!empty($this->_data)) ? true : false;
