@@ -33,7 +33,7 @@ if ($user->isLoggedIn()) { ?>
         <li><a href="logout.php">Logout</a></li>
     </ul>
 
-    <table id="passwords">
+    <table id="passwords" class="ui celled table" style="width:100%">
         <thead>
         <tr>
             <th>Title</th>
@@ -42,34 +42,32 @@ if ($user->isLoggedIn()) { ?>
             <th>Password</th>
             <th>URL</th>
             <th>Created At</th>
+            <th>Actions</th>
         </tr>
         </thead>
+        <tbody>
+        <?php
+        foreach ($password->show($user->data()->id) as $value) {
+            echo "<tr>
+                <td>" . $value->title . "</td>
+                <td>" . $value->username . "</td>
+                <td><a target='_blank' href='" . $value->url . "'><img src='" . $value->icon . "' alt='" . $value->title . "'></a></td>
+                <td>" . $value->password . "</td>
+                <td><a target='_blank' href='" . $value->url . "'>" . $value->url . "</a></td>
+                <td>" . $value->created_at . "</a></td>
+                <td><a href='editentry.php'>Edit Entry</a></td>";
+        }
+        ?>
+        </tbody>
     </table>
-
-
 <?php } else { ?>
     <p>You need to <a href="login.php">Login</a> or <a href="register.php">Register</a>.</p>
 <?php } ?>
 
 <?php include_once 'includes/scripts.php'; ?>
-<script>
-
-    //TODO Fix this using https://datatables.net/examples/data_sources/js_array.html
+<script async>
     $(document).ready(function () {
-        $('#passwords').DataTable({
-            columns: [
-                <?php
-                foreach ($password->show($user->data()->id) as $value) {
-                    echo "{ title: '" . $value->title . "'},";
-                    echo "{ username: '" . $value->username . "'},";
-                    echo "{ icon: '" . $value->icon . "'},";
-                    echo "{ password: '" . $value->password . "' },";
-                    echo "{ url: '" . $value->url . "'},";
-                    echo "{ created_at: '" . $value->created_at . "'},";
-                }
-                ?>
-            ]
-        });
+        $('#passwords').DataTable();
     });
 </script>
 </body>
