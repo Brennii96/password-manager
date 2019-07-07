@@ -3,7 +3,7 @@
 class Password
 {
     private $_db,
-        $_data;
+        $_list;
 
     public function __construct()
     {
@@ -18,7 +18,6 @@ class Password
 
     public function create($fields)
     {
-        var_dump($fields);
         if (!$this->_db->insert('password_management', $fields)) {
             throw new Exception('There was a problem.');
         }
@@ -64,4 +63,15 @@ class Password
         return false;
     }
 
+    public function show($key)
+    {
+        $list = $this->_db->get('password_management', array('user_id', '=', $key));
+
+        return $list->results();
+    }
+
+    public function list()
+    {
+        return $this->_list;
+    }
 }
