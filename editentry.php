@@ -65,16 +65,38 @@ if (Input::exists()) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Password Manager</title>
-    <link rel="stylesheet" href="assets/css/semantic.min.css"
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.semanticui.min.css"
-    <?php include 'includes/icons.php'; ?>
+    <link rel="stylesheet" href="../assets/css/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.semanticui.min.css">
+    <?php include_once 'includes/icons.php'; ?>
 </head>
 <body>
-<?php include_once 'includes/header.php'; ?>
+<div class="ui large top fixed hidden menu">
+    <div class="ui container">
+        <a href="../index.php" class="header item">
+            <img class="logo" src="./assets/icons/logo.png">
+            Password Manager
+        </a>
+        <a class="active item" href="../index.php">Home</a>
+        <div class="right menu">
+            <div class="ui simple dropdown item">
+                Profile <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="../update.php">Update your details</a>
+                    <a class="item" href="../changepassword.php">Change your Password</a>
+                    <a class="item" href="../addpassword.php">Add Entry</a>
+                    <a class="item" href="../logout.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pusher">
+    <div class="main ui container">
 <h1>Editing Entry</h1>
-<p>Icon is downloaded automatically providing the url has one or is provided.</p>
+        <p>Icon is downloaded automatically providing the url has one or is provided. If hotlinking is enabled the icon
+            the icon won't show.</p>
 <img src="<?php echo $editPassword->icon; ?>" class="img" alt="<?php echo $editPassword->title; ?>">
-<form action="" method="post">
+        <form action="" method="post" class="ui form">
     <div class="field">
         <label for="title">Title</label>
         <input type="text" name="title" id="title" value="<?php echo $editPassword->title; ?>">
@@ -97,10 +119,10 @@ if (Input::exists()) {
     </div>
 
     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="Update Entry">
+            <input class="ui button right floated" type="submit" value="Update Entry">
 </form>
-
-<a class="button" href="../index.php">Go Back</a>
-
+        <a class="button" href="../index.php">Go Back</a>
+    </div>
+</div>
 </body>
 </html>

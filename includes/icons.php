@@ -8,7 +8,11 @@
 <meta name="msapplication-TileColor" content="#b91d47">
 <meta name="msapplication-config" content="assets/icons/browserconfig.xml">
 <meta name="theme-color" content="#3789e2">
-
+<style>
+    .main.container {
+        margin-top: 6em;
+    }
+</style>
 <!--<script>-->
 <!--    // Initialize the service worker-->
 <!--    if ('serviceWorker' in navigator) {-->
