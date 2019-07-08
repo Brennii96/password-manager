@@ -11,6 +11,8 @@ For security you must first generate your encryption keys and add them to core/i
 Clone the github repo into your public_html folder or wherever your web root is and extract the zip. 
 Go to `core/init.php` and set your database credentials. Follow the steps below to create your encryption keys to add to the keys array. These will be used for encrypting and decrypting passwords.
 
+You will need to go to http://localhost/register.php to register for an account and start using it. 
+
 Create The First Key <br>
 `echo base64_encode(openssl_random_pseudo_bytes(32));`
 
