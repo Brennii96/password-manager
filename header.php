@@ -4,7 +4,7 @@ if ($user->isLoggedIn()) { ?>
     <div class="ui large top fixed hidden menu">
         <div class="ui container">
             <a href="./index.php" class="header item">
-                <img class="logo" src="./assets/icons/logo.png">
+                <img class="logo" src="assets/icons/logo.png">
                 Password Manager
             </a>
             <a class="active item" href="./index.php">Home</a>

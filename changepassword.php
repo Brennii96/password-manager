@@ -54,8 +54,7 @@ if (Input::exists()) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Password Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
@@ -63,7 +62,7 @@ if (Input::exists()) {
     <?php include_once 'includes/icons.php'; ?>
 </head>
 <body>
-<?php include_once 'includes/header.php'; ?>
+<?php include_once 'header.php'; ?>
 <div class="pusher">
     <div class="main ui container">
         <form action="" method="post" class="ui form">
@@ -87,5 +86,24 @@ if (Input::exists()) {
     </div>
 </div>
 
+<?php include_once 'includes/scripts.php'; ?>
+<script src="https://cdn.jsdelivr.net/npm/password-strength-meter@1.2.2/dist/password.min.js"></script>
+<script>
+    $('#new-password').password({
+        shortPass: 'The password is too short',
+        badPass: 'Weak; try combining letters & numbers',
+        goodPass: 'Medium; try using special characters',
+        strongPass: 'Strong password',
+        containsField: 'The password contains your username',
+        enterPass: 'Type your password',
+        showPercent: false,
+        showText: true, // shows the text tips
+        animate: true, // whether or not to animate the progress bar on input blur/focus
+        animateSpeed: 'fast', // the above animation speed
+        field: false, // select the match field (selector or jQuery instance) for better password checks
+        fieldPartialMatch: true, // whether to check for partials in field
+        minimumLength: 4 // minimum password length (below this threshold, the score is 0)
+    });
+</script>
 </body>
 </html>

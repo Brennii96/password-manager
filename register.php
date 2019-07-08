@@ -97,6 +97,7 @@ if (Input::exists()) {
 </div>
 <div class="pusher">
     <div class="main ui container">
+        <h1>Register</h1>
         <form action="" method="post" class="ui form">
     <div class="field">
         <label for="username">Username</label>
