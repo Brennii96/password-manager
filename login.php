@@ -37,11 +37,10 @@ if (Input::exists()) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Password Manager</title>
-    <link rel="stylesheet" href="assets/css/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.semanticui.min.css">
     <?php include_once 'includes/icons.php'; ?>
 </head>
@@ -67,26 +66,25 @@ if (Input::exists()) {
 </div>
 <div class="pusher">
     <div class="main ui container">
+        <div class="ui stacked segment">
         <form class="ui form" action="" method="post">
             <div class="field">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" autocomplete="off">
-    </div>
-
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                <input type="text" name="username" id="username" autocomplete="off" placeholder="Username">
+                </div>
+            </div>
             <div class="field">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" autocomplete="off">
-    </div>
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password" id="password" autocomplete="off" placeholder="Password">
+                </div>
+            </div>
 
-            <div class="field">
-        <label for="remember">Remember Me
-            <input type="checkbox" name="remember" id="remember">
-        </label>
-    </div>
-
-    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="Log In">
-</form>
+            <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+            <input class="ui fluid button submit" type="submit" value="Log In">
+        </form>
+        </div>
     </div>
 </div>
 </body>

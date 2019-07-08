@@ -18,17 +18,17 @@ if (Input::exists()) {
     $validation = $validate->check($_POST, array(
         'title' => array(
             'required' => true,
-            'max' => 45,
-            'name' => 'Title'
+            'max'      => 45,
+            'name'     => 'Title'
         ),
         'password' => array(
             'required' => true,
-            'name' => 'Password'
+            'name'     => 'Password'
         ),
         'password-repeat' => array(
-            'required' => true,
-            'matches' => 'password',
-            'name' => 'Repeat Password'
+            'required'    => true,
+            'matches'     => 'password',
+            'name'        => 'Repeat Password'
         )
     ));
 
@@ -37,12 +37,12 @@ if (Input::exists()) {
     if ($validation->passed()) {
         try {
             $password->update(array(
-                'title' => Input::get('title'),
-                'user_id' => $user->data()->id,
-                'username' => Input::get('username'),
-                'url' => Input::get('url'),
-                'icon' => $icon,
-                'password' => Encryption::secured_encrypt(Input::get('password')),
+                'title'      => Input::get('title'),
+                'user_id'    => $user->data()->id,
+                'username'   => Input::get('username'),
+                'url'        => Input::get('url'),
+                'icon'       => $icon,
+                'password'   => Encryption::secured_encrypt(Input::get('password')),
                 'created_at' => date('Y-m-d H:i:s'),
             ));
 
@@ -63,11 +63,10 @@ if (Input::exists()) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Password Manager</title>
-    <link rel="stylesheet" href="../assets/css/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.semanticui.min.css">
     <?php include_once 'includes/icons.php'; ?>
 </head>
@@ -75,7 +74,7 @@ if (Input::exists()) {
 <div class="ui large top fixed hidden menu">
     <div class="ui container">
         <a href="../index.php" class="header item">
-            <img class="logo" src="./assets/icons/logo.png">
+            <img class="logo" src="./assets/icons/logo.png" alt="Password Manager Icon">
             Password Manager
         </a>
         <a class="active item" href="../index.php">Home</a>
@@ -122,7 +121,7 @@ if (Input::exists()) {
             <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
             <input class="ui button right floated" type="submit" value="Update Entry">
         </form>
-        <a class="button" href="../index.php">Go Back</a>
+        <a class="ui button" href="../index.php">Go Back</a>
     </div>
 </div>
 </body>
