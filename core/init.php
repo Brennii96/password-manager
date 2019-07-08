@@ -15,6 +15,10 @@ $GLOBALS['config'] = array(
     'session' => array(
         'session_name' => 'user',
         'token_name' => 'token'
+    ),
+    'keys' => array(
+        'first_key' => 'WXXJyC0svWPdkGaF2/o506bNSiG4rt7AYkCVnqarYlM=',
+        'second_key' => 'xYm30k9sDX4ssNCWy7W8OIpQ2/Cfg/ocf2AZWqg5CfUAtjO6gYr47Jjy+3XA6+BBGwqLQB4AB/0ajZ4RGuW2hQ==',
     )
 );
 

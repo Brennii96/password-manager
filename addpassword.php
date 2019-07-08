@@ -26,8 +26,6 @@ if (Input::exists()) {
 
         $user = new User();
 
-        $salt = Hash::salt(32);
-
         $icon = Password::favicon(Input::get('url'));
 
         try {
@@ -35,10 +33,9 @@ if (Input::exists()) {
                 'title' => Input::get('title'),
                 'username' => Input::get('username'),
                 'user_id' => $user->data()->id,
-                'password' => Hash::make(Input::get('password'), $salt),
+                'password' => Encryption::secured_encrypt(Input::get('password')),
                 'url' => Input::get('url'),
                 'icon' => $icon,
-                'salt' => $salt,
                 'created_at' => date('Y-m-d H:i:s'),
             ));
 

@@ -2,6 +2,14 @@
 
 This project is written in PHP 7.2 and uses MySQL 5.7 as the database. 
 
+For security you must first generate your encryption keys and add them to core/init.php.
+
+Create The First Key<br>
+`echo base64_encode(openssl_random_pseudo_bytes(32));`
+
+Create The Second Key<br>
+`echo base64_encode(openssl_random_pseudo_bytes(64));`
+
 Create Users table: <br>
 `CREATE TABLE 'password_manager'.'users' (`<br>
 `  'id' INT NOT NULL AUTO_INCREMENT,`<br>
@@ -35,8 +43,7 @@ Create the password management table:<br>
 `  'title' VARCHAR(45) NOT NULL,`<br>
 `  'username' VARCHAR(100) NOT NULL,`<br>
 `  'icon' VARCHAR(100) NOT NULL,`<br>
-`  'password' VARCHAR(64) NOT NULL,`<br>
-`  'salt' VARCHAR(45) NOT NULL,`<br>
+`  'password' VARCHAR(128) NOT NULL,`<br>
 `  'url' VARCHAR(100) NOT NULL,`<br>
 `  'created_at' VARCHAR(45) NOT NULL,`<br>
 `  PRIMARY KEY ('id'));`
