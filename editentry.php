@@ -6,7 +6,6 @@ $user = new User();
 $password = new Password();
 
 $editPassword = $password->find($_GET['id']);
-
 if (!$user->isLoggedIn()) {
     Redirect::to('index.php');
 }
@@ -34,18 +33,22 @@ if (Input::exists()) {
     $icon = Password::favicon(Input::get('url'));
 
     if ($validation->passed()) {
-        $password->update(array(
-            'title' => Input::get('title'),
-            'user_id' => $editPassword,
-            'username' => Input::get('username'),
-            'url' => Input::get('url'),
-            'icon' => $icon,
-            'password' => Encryption::secured_encrypt(Input::get('password')),
-            'created_at' => date('Y-m-d H:i:s'),
-        ));
+        try {
+            $password->update(array(
+                'title' => Input::get('title'),
+                'user_id' => $editPassword->id,
+                'username' => Input::get('username'),
+                'url' => Input::get('url'),
+                'icon' => $icon,
+                'password' => Encryption::secured_encrypt(Input::get('password')),
+                'created_at' => date('Y-m-d H:i:s'),
+            ));
 
-        Session::flash('home', 'Your entry has been updated.');
-        Redirect::to('index.php');
+            Session::flash('home', 'Your entry has been updated.');
+            Redirect::to('index.php');
+        } catch (Excetption $e) {
+            die($e->getMessage());
+        }
     } else {
         foreach ($validation->errors() as $error) {
             echo $error . "<br>";
