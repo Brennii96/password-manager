@@ -30,12 +30,12 @@ if (Input::exists()) {
 
         try {
             $password->create(array(
-                'title' => Input::get('title'),
-                'username' => Input::get('username'),
-                'user_id' => $user->data()->id,
-                'password' => Encryption::secured_encrypt(Input::get('password')),
-                'url' => Input::get('url'),
-                'icon' => $icon,
+                'title'      => Input::get('title'),
+                'username'   => Input::get('username'),
+                'user_id'    => $user->data()->id,
+                'password'   => Encryption::secured_encrypt(Input::get('password')),
+                'url'        => Input::get('url'),
+                'icon'       => $icon,
                 'created_at' => date('Y-m-d H:i:s'),
             ));
 
@@ -54,12 +54,20 @@ if (Input::exists()) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <title>Password Manager - Add Password</title>
     <?php include_once 'includes/icons.php'; ?>
+    <style>
+        .field-icon {
+            float: right;
+            margin-right: 25px !important;
+            margin-top: -26px !important;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
 <div class="ui large top fixed hidden menu">
@@ -95,7 +103,9 @@ if (Input::exists()) {
             </div>
             <div class="field">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" value="">
+<!--                <input type="password" name="password" id="password" value="--><?php //echo Password::generate(22); ?><!--">-->
+                <input type="password" name="password" id="password">
+                <i toggle="#password" class="eye icon field-icon toggle-password"></i>
             </div>
             <div class="field">
                 <label for="password-repeat">Repeat Password: </label>
@@ -112,5 +122,20 @@ if (Input::exists()) {
         </form>
     </div>
 </div>
+
+<?php include_once 'includes/scripts.php'; ?>
+
+<script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("eye slash outline icon");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>
 </body>
 </html>

@@ -47,8 +47,7 @@ if (Input::exists()) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Password Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
@@ -56,7 +55,7 @@ if (Input::exists()) {
     <?php include_once 'includes/icons.php'; ?>
 </head>
 <body>
-<?php include 'includes/header.php'; ?>
+<?php include_once 'header.php'; ?>
 <div class="pusher">
     <div class="main ui container">
         <h1>Password manager</h1>
@@ -65,13 +64,11 @@ if (Input::exists()) {
         <form action="" method="post" class="ui form">
             <div class="field">
                 <label for="first_name">First Name</label>
-                <input type="text" name="first_name" id="first_name"
-                       value="<?php echo escape($user->data()->first_name); ?>">
+                <input type="text" name="first_name" id="first_name" value="<?php echo escape($user->data()->first_name); ?>">
             </div>
             <div class="field">
                 <label for="last_name">Last Name</label>
-                <input type="text" name="last_name" id="last_name"
-                       value="<?php echo escape($user->data()->last_name); ?>">
+                <input type="text" name="last_name" id="last_name" value="<?php echo escape($user->data()->last_name); ?>">
             </div>
 
             <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">

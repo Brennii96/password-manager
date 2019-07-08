@@ -66,6 +66,7 @@ if (Input::exists()) {
 </div>
 <div class="pusher">
     <div class="main ui container">
+        <h1>Login</h1>
         <div class="ui stacked segment">
         <form class="ui form" action="" method="post">
             <div class="field">

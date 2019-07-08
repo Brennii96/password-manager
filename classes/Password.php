@@ -10,7 +10,7 @@ class Password
         $this->_db = DB::getInstance();
     }
 
-    private function generate($length = 15)
+    public function generate($length = 15)
     {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(){}/?,><";
         return substr(str_shuffle($chars), 0, $length);

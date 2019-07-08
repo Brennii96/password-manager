@@ -2,6 +2,8 @@
 
 This project is written in PHP 7.2 and uses MySQL 5.7 as the database. 
 
+Few things need improvement, password generator doesn't insert into database properly. Copy to clipboard. CSRF needs enabling.
+
 If the website your adding a password for has hotlink protection you won't be able to get an icon.<br>
 
 For security you must first generate your encryption keys and add them to core/init.php.
@@ -30,13 +32,6 @@ Create the Users Sessions table: <br>
 `   'user_id' INT(11) NULL,`<br>
 `   'hash' VARCHAR(64) NULL,`<br>
 `   PRIMARY KEY ('id'));`
-
-Create the permissions table: <br>
-`CREATE TABLE 'password_manager'.'user_permissions' (`<br>
-`   'id' INT NOT NULL AUTO_INCREMENT,`<br>
-`   'name' VARCHAR(45) NULL,`<br>
-`   'permissions' JSON NULL,` <br>
-`   'PRIMARY KEY ('id'));`
 
 Create the password management table:<br>
 `CREATE TABLE 'password_manager'.'password_management' (`<br>
