@@ -25,8 +25,9 @@ class Password
 
     public function update($fields = array(), $id = null)
     {
-        if (!$id && $this->isLoggedIn()) {
-            $id = $this->data()->id;
+        $user = new User();
+        if (!$id && $user->isLoggedIn()) {
+            $id = $this->_list->id;
         }
 
         if (!$this->_db->update('password_manager', $id, $fields)) {
@@ -60,6 +61,20 @@ class Password
             return $favicon;
         }
 
+        return false;
+    }
+
+    public function find($entry = null)
+    {
+        if ($entry) {
+            $field = (is_numeric($entry)) ? 'id' : 'username';
+            $data = $this->_db->get('password_management', array($field, '=', $entry));
+
+            if ($data->count()) {
+                $this->_list = $data->first();
+                return $this->_list;
+            }
+        }
         return false;
     }
 

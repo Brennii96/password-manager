@@ -7,6 +7,8 @@ if (Session::exists('home')) {
 
 $user = new User();
 $password = new Password();
+$encrypt = new Encryption();
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,7 +35,7 @@ if ($user->isLoggedIn()) { ?>
         <li><a href="logout.php">Logout</a></li>
     </ul>
 
-    <table id="passwords" class="ui celled table" style="width:100%">
+    <table id="passwords" class="ui celled table">
         <thead>
         <tr>
             <th>Title</th>
@@ -46,23 +48,29 @@ if ($user->isLoggedIn()) { ?>
         </tr>
         </thead>
         <tbody>
+
         <?php
         foreach ($password->show($user->data()->id) as $value) {
             echo "<tr>
                 <td>" . $value->title . "</td>
                 <td>" . $value->username . "</td>
                 <td><a target='_blank' href='" . $value->url . "'><img src='" . $value->icon . "' alt='" . $value->title . "'></a></td>
-                <td>" . $value->password . "</td>
+                <td><div class='ui small fade reveal'>
+                    <input class='visible content' type='password' disabled value='" . $value->password . "'>
+                    <input class='hidden content' type='text' disabled value='" . Encryption::secured_decrypt($value->password) . "'>
+                </div></td>
                 <td><a target='_blank' href='" . $value->url . "'>" . $value->url . "</a></td>
                 <td>" . $value->created_at . "</a></td>
-                <td><a href='editentry.php'>Edit Entry</a></td>";
+                <td><a href='editentry.php/?id=" . $value->id . "'>Edit Entry</a></td></tr>";
         }
         ?>
         </tbody>
     </table>
+
 <?php } else { ?>
     <p>You need to <a href="login.php">Login</a> or <a href="register.php">Register</a>.</p>
 <?php } ?>
+
 
 <?php include_once 'includes/scripts.php'; ?>
 <script async>
