@@ -27,11 +27,11 @@ class Password
     {
         $user = new User();
         if (!$id && $user->isLoggedIn()) {
-            $id = $this->_list->id;
+            $id = $this->list()->id;
         }
 
-        if (!$this->_db->update('password_manager', $id, $fields)) {
-            throw new Exception('There was a problem updating');
+        if (!$this->_db->update('password_management', $id, $fields)) {
+            throw new Exception('There was a problem updating.');
         }
     }
 

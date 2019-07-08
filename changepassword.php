@@ -67,23 +67,25 @@ if (Input::exists()) {
 <div class="pusher">
     <div class="main ui container">
         <form action="" method="post" class="ui form">
-    <div class="field">
-        <label for="current-password">Current Password:</label>
-        <input type="password" name="current-password" id="current-password" autocomplete="on">
-    </div>
-    <div class="field">
-        <label for="new-password">New Password:</label>
-        <input type="password" name="new-password" id="new-password" autocomplete="on">
-    </div>
-    <div class="field">
-        <label for="password-repeat">Repeat Password:</label>
-        <input type="password" name="password-repeat" id="password-repeat" autocomplete="on">
-    </div>
+            <div class="field">
+                <label for="current-password">Current Password:</label>
+                <input type="password" name="current-password" id="current-password" autocomplete="on">
+            </div>
+            <div class="field">
+                <label for="new-password">New Password:</label>
+                <input type="password" name="new-password" id="new-password" autocomplete="off">
+            </div>
+            <div class="field">
+                <label for="password-repeat">Repeat Password:</label>
+                <input type="password" name="password-repeat" id="password-repeat" autocomplete="off">
+            </div>
             <div class="field">
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                 <input class="ui button right floated" type="submit" value="Change">
             </div>
-</form>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

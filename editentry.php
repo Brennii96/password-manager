@@ -5,10 +5,12 @@ require_once 'core/init.php';
 $user = new User();
 $password = new Password();
 
-$editPassword = $password->find($_GET['id']);
 if (!$user->isLoggedIn()) {
     Redirect::to('index.php');
 }
+
+$editPassword = $password->find($_GET['id']);
+
 
 if (Input::exists()) {
 //    if (Token::check(Input::get('token'))) {
@@ -36,7 +38,7 @@ if (Input::exists()) {
         try {
             $password->update(array(
                 'title' => Input::get('title'),
-                'user_id' => $editPassword->id,
+                'user_id' => $user->data()->id,
                 'username' => Input::get('username'),
                 'url' => Input::get('url'),
                 'icon' => $icon,
@@ -45,7 +47,7 @@ if (Input::exists()) {
             ));
 
             Session::flash('home', 'Your entry has been updated.');
-            Redirect::to('index.php');
+            Redirect::to('../index.php');
         } catch (Excetption $e) {
             die($e->getMessage());
         }
@@ -92,35 +94,34 @@ if (Input::exists()) {
 </div>
 <div class="pusher">
     <div class="main ui container">
-<h1>Editing Entry</h1>
+        <h1>Editing Entry</h1>
         <p>Icon is downloaded automatically providing the url has one or is provided. If hotlinking is enabled the icon
             the icon won't show.</p>
-<img src="<?php echo $editPassword->icon; ?>" class="img" alt="<?php echo $editPassword->title; ?>">
         <form action="" method="post" class="ui form">
-    <div class="field">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="<?php echo $editPassword->title; ?>">
-    </div>
-    <div class="field">
-        <label for="username">Username / Email:</label>
-        <input type="text" name="username" id="username" value="<?php echo $editPassword->username; ?>">
-    </div>
-    <div class="field">
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" value="">
-    </div>
-    <div class="field">
-        <label for="password-repeat">Repeat Password: </label>
-        <input type="password" name="password-repeat" id="password-repeat" value="">
-    </div>
-    <div class="field">
-        <label for="url">URL: </label>
-        <input type="url" name="url" id="url" value="<?php echo $editPassword->url; ?>">
-    </div>
+            <div class="field">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value="<?php echo $editPassword->title; ?>">
+            </div>
+            <div class="field">
+                <label for="username">Username / Email:</label>
+                <input type="text" name="username" id="username" value="<?php echo $editPassword->username; ?>">
+            </div>
+            <div class="field">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="">
+            </div>
+            <div class="field">
+                <label for="password-repeat">Repeat Password: </label>
+                <input type="password" name="password-repeat" id="password-repeat" value="">
+            </div>
+            <div class="field">
+                <label for="url">URL: </label>
+                <input type="text" name="url" id="url" value="<?php echo $editPassword->url; ?>">
+            </div>
 
-    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+            <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
             <input class="ui button right floated" type="submit" value="Update Entry">
-</form>
+        </form>
         <a class="button" href="../index.php">Go Back</a>
     </div>
 </div>
