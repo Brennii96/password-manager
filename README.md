@@ -2,9 +2,11 @@
 
 This project is written in PHP 7.2 and uses MySQL 5.7 as the database. 
 
+If the website your adding a password for has hotlink protection you won't be able to get an icon.<br>
+
 For security you must first generate your encryption keys and add them to core/init.php.
 
-Create The First Key<br>
+Create The First Key <br>
 `echo base64_encode(openssl_random_pseudo_bytes(32));`
 
 Create The Second Key<br>

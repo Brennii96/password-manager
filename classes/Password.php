@@ -78,6 +78,11 @@ class Password
         return false;
     }
 
+    public function delete($id)
+    {
+        $this->_db->delete('password_management', array('id', '=', $id));
+    }
+
     public function show($key)
     {
         $list = $this->_db->get('password_management', array('user_id', '=', $key));

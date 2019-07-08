@@ -49,9 +49,24 @@ if (Input::exists()) {
     }
 //    }
 }
-
 ?>
-<form action="" method="post">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="./assets/css/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.semanticui.min.css">
+    <?php include_once 'includes/icons.php'; ?>
+</head>
+<body>
+<?php include_once 'includes/header.php'; ?>
+<div class="pusher">
+    <div class="main ui container">
+        <form action="" method="post" class="ui form">
     <div class="field">
         <label for="current-password">Current Password:</label>
         <input type="password" name="current-password" id="current-password" autocomplete="on">
@@ -64,7 +79,11 @@ if (Input::exists()) {
         <label for="password-repeat">Repeat Password:</label>
         <input type="password" name="password-repeat" id="password-repeat" autocomplete="on">
     </div>
-
-    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="Change">
+            <div class="field">
+                <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+                <input class="ui button right floated" type="submit" value="Change">
+            </div>
 </form>
+
+</body>
+</html>

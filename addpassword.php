@@ -50,29 +50,67 @@ if (Input::exists()) {
 }
 //}
 ?>
-
-<form action="" method="post">
-    <div class="field">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/semantic.min.css">
+    <title>Password Manager - Add Password</title>
+    <?php include_once 'includes/icons.php'; ?>
+</head>
+<body>
+<div class="ui large top fixed hidden menu">
+    <div class="ui container">
+        <a href="./index.php" class="header item">
+            <img class="logo" src="./assets/icons/logo.png">
+            Password Manager
+        </a>
+        <a class="active item" href="./index.php">Home</a>
+        <div class="right menu">
+            <div class="ui simple dropdown item">
+                Profile <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="./update.php">Update your details</a>
+                    <a class="item" href="./changepassword.php">Change your Password</a>
+                    <a class="item" href="./addpassword.php">Add Entry</a>
+                    <a class="item" href="./logout.php">Logout</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="field">
-        <label for="username">Username / Email:</label>
-        <input type="text" name="username" id="username" value="">
+</div>
+<div class="pusher">
+    <div class="main ui container">
+        <form action="" method="post" class="ui form">
+            <div class=="field">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value="">
+            </div>
+            <div class="field">
+                <label for="username">Username / Email:</label>
+                <input type="text" name="username" id="username" value="">
+            </div>
+            <div class="field">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="">
+            </div>
+            <div class="field">
+                <label for="password-repeat">Repeat Password: </label>
+                <input type="password" name="password-repeat" id="password-repeat" value="">
+            </div>
+            <div class="field">
+                <label for="url">URL: </label>
+                <input type="url" name="url" id="url" value="">
+            </div>
+            <div class="field">
+                <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+                <input class="ui button right floated" type="submit" value="Add Password">
+            </div>
+        </form>
     </div>
-    <div class="field">
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" value="">
-    </div>
-    <div class="field">
-        <label for="password-repeat">Repeat Password: </label>
-        <input type="password" name="password-repeat" id="password-repeat" value="">
-    </div>
-    <div class="field">
-        <label for="url">URL: </label>
-        <input type="url" name="url" id="url" value="">
-    </div>
-
-    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-    <input type="submit" value="Add Password">
-</form>
+</div>
+</body>
+</html>

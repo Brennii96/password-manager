@@ -5,4 +5,4 @@ $user = new User();
 
 $user->logout();
 
-Redirect::to('index.php');
+Redirect::to('./index.php');
